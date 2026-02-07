@@ -48,9 +48,3 @@ python bar_chart.py
 - Phone numbers masked
 - Passwords hidden
 - Salaries converted to bands
-
-## 🧱 **Potential Enhancements**
-- Airflow DAG
-- dbt transformations
-- Logging
-- Partitioned tables
