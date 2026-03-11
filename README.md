@@ -21,8 +21,6 @@ The pipeline is structured around four key engineering decisions:
 
 ## 2. System Architecture
 
-<img src="https://github.com/YSayaovong/etl-pipeline-datafusion-airflow/blob/main/assets/architecture.PNG" width="800">
-
 The architecture follows a five-stage linear flow with a clean handoff between each layer:
 
 | Stage | Step | Tool | Output |
