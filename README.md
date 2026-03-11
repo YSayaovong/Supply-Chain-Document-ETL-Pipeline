@@ -37,22 +37,7 @@ The GCS layer serves as the decoupling point between generation and ingestion �
 
 ---
 
-## 3. Tech Stack
-
-<img src="https://github.com/YSayaovong/etl-pipeline-datafusion-airflow/blob/main/assets/tech_stack.PNG" width="800">
-
-| Layer | Tool | Purpose |
-|---|---|---|
-| Data Generation | Python 3 + Faker | Synthetic employee record creation |
-| Cloud Storage | Google Cloud Storage | Staging layer between generation and ingestion |
-| Data Warehouse | Google BigQuery | Raw table storage + masked analytical view |
-| Authentication | Service Account (JSON) | Secure GCP access without user credentials |
-| Visualization | Matplotlib | Department-level bar chart from masked view |
-| Type Handling | db-dtypes | BigQuery → Pandas type compatibility |
-
----
-
-## 4. Project Structure
+## 3. Project Structure
 
 ```
 etl-pipeline-datafusion-airflow/
@@ -75,7 +60,7 @@ etl-pipeline-datafusion-airflow/
 
 ---
 
-## 5. Pipeline Overview
+## 4. Pipeline Overview
 
 ### Step 1 — Extract & Generate Data
 
@@ -118,7 +103,7 @@ Queries the `masked_employees` view via the BigQuery Python client, pulls depart
 
 ---
 
-## 6. Data Masking Strategy
+## 5. Data Masking Strategy
 
 Masking is applied at the BigQuery view layer — not during generation or upload. This preserves full fidelity in the raw table for audit and reprocessing purposes, while ensuring that any analyst or downstream consumer querying the view never sees sensitive values.
 
@@ -134,15 +119,14 @@ The banding approach for salary is deliberate: replacing exact compensation with
 
 ---
 
-## 7. Output
-
+## 6. Output
 ![Employees by Department](https://github.com/YSayaovong/etl-pipeline-datafusion-airflow/blob/main/assets/employees_by_department.png)
 
 The bar chart confirms end-to-end pipeline success — data was generated, uploaded, ingested, masked, and queried successfully. Department distribution reflects Faker's random field generation and is not intended to represent a realistic org structure.
 
 ---
 
-## 8. Potential Enhancements
+## 7. Potential Enhancements
 
 | Enhancement | Value |
 |---|---|
@@ -155,13 +139,15 @@ The bar chart confirms end-to-end pipeline success — data was generated, uploa
 
 ---
 
-## 9. Summary
+## 8. Summary
 
 This pipeline demonstrates a production-style cloud ETL pattern covering synthetic data generation, GCS staging, BigQuery ingestion, view-level data masking, and downstream visualization — end to end in three scripts. The masking strategy reflects a real engineering decision: separating raw storage from analytical access without data duplication or upstream transformation. The GCS staging layer, Service Account authentication pattern, and BigQuery view architecture are directly transferable to enterprise data engineering workflows.
 
 ---
 
 ## Tools Used
+
+<img src="https://github.com/YSayaovong/etl-pipeline-datafusion-airflow/blob/main/assets/tech_stack.PNG" width="800">
 
 - Python 3 — data generation, GCS upload, BigQuery client, Matplotlib visualization
 - Google Cloud Storage — staging layer
